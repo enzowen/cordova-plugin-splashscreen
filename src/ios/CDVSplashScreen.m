@@ -266,6 +266,27 @@
         imageName = [imageName stringByAppendingString:@"-736h"];
 
     }
+    else if (device.iPhoneX)
+    { // supports landscape
+        if (isOrientationLocked)
+        {
+            imageName = [imageName stringByAppendingString:(supportsLandscape ? @"-Landscape" : @"")];
+        }
+        else
+        {
+            switch (currentOrientation)
+            {
+                case UIInterfaceOrientationLandscapeLeft:
+                case UIInterfaceOrientationLandscapeRight:
+                        imageName = [imageName stringByAppendingString:@"-Landscape"];
+                    break;
+                default:
+                    break;
+            }
+        }
+        imageName = [imageName stringByAppendingString:@"-2436h"];
+
+    }
     else if (device.iPad)
     {   // supports landscape
         if (isOrientationLocked)
@@ -376,7 +397,7 @@
      * correctly.
      */
     CDV_iOSDevice device = [self getCurrentDevice];
-    if (UIInterfaceOrientationIsLandscape(orientation) && !device.iPhone6Plus && !device.iPad)
+    if (UIInterfaceOrientationIsLandscape(orientation) && !device.iPhone6Plus && !device.iPhoneX && !device.iPad)
     {
         imgTransform = CGAffineTransformMakeRotation(M_PI / 2);
         imgBounds.size = CGSizeMake(imgBounds.size.height, imgBounds.size.width);
