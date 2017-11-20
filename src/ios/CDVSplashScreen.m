@@ -228,6 +228,12 @@
             {
                 imageName = [imageName stringByAppendingString:@"-Portrait"];
             }
+        } else if(device.iPhoneX) {
+            imageName = [imageName stringByAppendingString:@"-1100"];
+            if (currentOrientation == UIInterfaceOrientationPortrait || currentOrientation == UIInterfaceOrientationPortraitUpsideDown)
+            {
+                imageName = [imageName stringByAppendingString:@"-Portrait"];
+            }
         }
     }
 
